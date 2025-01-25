@@ -11,6 +11,9 @@ public class BobaSlurper : MonoBehaviour
     [SerializeField]
     private LayerMask _bobaMask;
 
+    [SerializeField]
+    private LineRenderer _lineRenderer;
+
     private void Update()
     {
         Vector3 direction = transform.TransformDirection(Vector3.down) * _distance;
@@ -19,15 +22,14 @@ public class BobaSlurper : MonoBehaviour
 
         if (Physics.Raycast(transform.position, direction, out hit, _distance, _bobaMask))
         {
-            Destroy(hit.transform.gameObject);
-        }
-    }
+            // Destroy(hit.transform.gameObject);
+            var boba = hit.transform.gameObject.GetComponent<Boba>();
 
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Vector3 direction = transform.TransformDirection(Vector3.down) * _distance;
-        Gizmos.DrawRay(transform.position, direction);
+            if (boba)
+            {
+                StartCoroutine(boba.SlurpBoba(_lineRenderer));
+            }
+        }
     }
 
 }
