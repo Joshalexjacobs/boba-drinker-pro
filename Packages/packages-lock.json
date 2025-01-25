@@ -1,12 +1,5 @@
 {
   "dependencies": {
-    "com.scottdoxey.unityropecontroller": {
-      "version": "https://github.com/neogeek/UnityRopeController.git#v1.0.0",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "c96b49f20eb270f538000bf93ca67984537d6a22"
-    },
     "com.unity.2d.animation": {
       "version": "10.1.4",
       "depth": 1,
