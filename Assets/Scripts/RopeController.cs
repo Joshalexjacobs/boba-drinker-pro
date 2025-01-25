@@ -131,6 +131,8 @@ namespace ScottDoxey
 
             var rb = go.AddComponent<Rigidbody>();
 
+            rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
+
             var collider = go.AddComponent<SphereCollider>();
 
             collider.radius = 0.25f;
