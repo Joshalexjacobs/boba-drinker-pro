@@ -8,9 +8,9 @@ public class TeaTimer : MonoBehaviour
     {
 
         Idle,
-        Started,
-        GameOver,
+        Slurping,
         Paused,
+        GameOver,
 
     }
 
@@ -20,24 +20,18 @@ public class TeaTimer : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
 
     [SerializeField]
-    private float _maxTime = 20f;
-
-    private float _startTime = 0f;
+    private BoxCollider _boxCollider;
 
     private float _teaSpriteHeight = 0f;
 
-    private TimeSpan _timeSpan;
+    private float _percentageSlurped = 0f;
+
+    [SerializeField]
+    private float _slurpSpeed = 0.25f;
 
     private void Start()
     {
         _teaSpriteHeight = _spriteRenderer.size.y;
-    }
-
-    public void StartTeaTimer()
-    {
-        _startTime = Time.timeSinceLevelLoad;
-
-        currentState = TeaTimerState.Started;
     }
 
     public void PauseTeaTimer()
@@ -47,27 +41,48 @@ public class TeaTimer : MonoBehaviour
 
     private void Update()
     {
-        if (currentState == TeaTimerState.Started)
+        if (currentState == TeaTimerState.Slurping)
         {
-            _timeSpan = TimeSpan.FromSeconds(Time.timeSinceLevelLoad - _startTime);
+            _percentageSlurped += Time.deltaTime * _slurpSpeed;
 
-            if (_timeSpan.Seconds >= _maxTime)
+            if (_percentageSlurped >= 1f)
             {
-                // out of time
                 currentState = TeaTimerState.GameOver;
             }
-            else
-            {
-                UpdateTeaSpriteHeight();
-            }
+
+            UpdateTeaSpriteHeight();
         }
+
+        _boxCollider.size = new Vector3(_spriteRenderer.size.x, _spriteRenderer.size.y, 0.2f);
+
+        _boxCollider.center = new Vector3(0f, _boxCollider.size.y / 2, 0f);
     }
 
     private void UpdateTeaSpriteHeight()
     {
-        var timeElapsedPercentage = (float)_timeSpan.TotalSeconds / _maxTime;
+        _spriteRenderer.size = new Vector2(_spriteRenderer.size.x, _teaSpriteHeight - (_teaSpriteHeight * _percentageSlurped));
+    }
 
-        _spriteRenderer.size = new Vector2(_spriteRenderer.size.x, _teaSpriteHeight - (_teaSpriteHeight * timeElapsedPercentage));
+    private void OnTriggerEnter(Collider other)
+    {
+        if (currentState == TeaTimerState.Paused || currentState == TeaTimerState.Idle)
+        {
+            if (other.CompareTag(BobaSlurper.Tag))
+            {
+                currentState = TeaTimerState.Slurping;
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (currentState == TeaTimerState.Slurping)
+        {
+            if (other.CompareTag(BobaSlurper.Tag))
+            {
+                currentState = TeaTimerState.Paused;
+            }
+        }
     }
 
 }
