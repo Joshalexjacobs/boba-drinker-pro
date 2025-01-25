@@ -282,9 +282,9 @@ GameObject:
   - component: {fileID: 435536047}
   - component: {fileID: 435536048}
   - component: {fileID: 435536049}
-  m_Layer: 0
-  m_Name: Bottom
-  m_TagString: Untagged
+  m_Layer: 8
+  m_Name: Boba Slurper (Straw Bottom)
+  m_TagString: Boba Slurper
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -708,7 +708,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 54.75
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1591,7 +1591,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1219663007}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9bd02555ce56948788fb901d38a50b93, type: 3}
   m_Name: 
@@ -1965,7 +1965,10 @@ GameObject:
   - component: {fileID: 1489060753}
   - component: {fileID: 1489060752}
   - component: {fileID: 1489060754}
-  m_Layer: 0
+  - component: {fileID: 1489060756}
+  - component: {fileID: 1489060755}
+  - component: {fileID: 1489060757}
+  m_Layer: 7
   m_Name: TeaTimer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2054,8 +2057,70 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1425c7a2e149b4acba23d9e5a77f211c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
   _spriteRenderer: {fileID: 1489060752}
-  _time: 20
+  _maxTime: 20
+  _boxCollider: {fileID: 1489060755}
+--- !u!65 &1489060755
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489060751}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.16, y: 0.15999998, z: 0.2}
+  m_Center: {x: 0, y: 0.07999999, z: 0}
+--- !u!114 &1489060756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489060751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8988e03d8e64a40f7baf287d64343eb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &1489060757
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489060751}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1585361616
 GameObject:
   m_ObjectHideFlags: 0
@@ -2644,7 +2709,7 @@ GameObject:
   - component: {fileID: 2146017352}
   - component: {fileID: 2146017353}
   m_Layer: 0
-  m_Name: Top
+  m_Name: Straw Top
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0

@@ -23,8 +23,6 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(3f);
 
         _starterText.enabled = false;
-
-        _teaTimer.StartTeaTimer();
     }
 
 
