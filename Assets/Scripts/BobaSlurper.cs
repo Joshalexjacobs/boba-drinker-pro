@@ -1,5 +1,3 @@
-using System;
-using CandyCoded;
 using UnityEngine;
 
 public class BobaSlurper : MonoBehaviour {
