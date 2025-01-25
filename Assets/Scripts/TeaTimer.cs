@@ -25,6 +25,12 @@ public class TeaTimer : MonoBehaviour
     [SerializeField]
     private ParticleSystem _teaParticles;
 
+    [SerializeField]
+    private ParticleSystem _slurpingParticle;
+
+    [SerializeField]
+    private GameManager _gameManager;
+
     private float _teaSpriteHeight = 0f;
 
     private float _percentageSlurped = 0f;
@@ -48,9 +54,13 @@ public class TeaTimer : MonoBehaviour
         {
             _percentageSlurped += Time.deltaTime * _slurpSpeed;
 
-            if (_percentageSlurped >= 1f)
+            if (_percentageSlurped >= 0.9f)
             {
+                _gameManager.GameOver();
+
                 currentState = TeaTimerState.GameOver;
+
+                _slurpingParticle.Stop();
 
                 _teaParticles.Stop();
             }
@@ -76,6 +86,8 @@ public class TeaTimer : MonoBehaviour
             {
                 currentState = TeaTimerState.Slurping;
 
+                _slurpingParticle.Play();
+
                 _teaParticles.Play();
             }
         }
@@ -88,6 +100,8 @@ public class TeaTimer : MonoBehaviour
             if (other.CompareTag(BobaSlurper.Tag))
             {
                 currentState = TeaTimerState.Paused;
+
+                _slurpingParticle.Stop();
 
                 _teaParticles.Stop();
             }
