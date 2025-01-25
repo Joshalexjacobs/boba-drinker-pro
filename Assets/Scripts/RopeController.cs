@@ -133,6 +133,9 @@ namespace ScottDoxey
 
             rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
 
+            rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezePositionZ |
+                             RigidbodyConstraints.FreezeRotationY;
+
             var collider = go.AddComponent<SphereCollider>();
 
             collider.radius = 0.25f;
