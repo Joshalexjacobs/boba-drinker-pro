@@ -131,6 +131,11 @@ namespace ScottDoxey
 
             var rb = go.AddComponent<Rigidbody>();
 
+            var collider = go.AddComponent<SphereCollider>();
+
+            collider.radius = 0.25f;
+            collider.gameObject.layer = LayerMask.NameToLayer("Straw Segment");
+
             SetupRopeJoint(rb.gameObject, connectedBody);
 
             return rb;
