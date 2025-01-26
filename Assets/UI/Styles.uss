@@ -25,7 +25,25 @@
     font-size: 20px;
 }
 
-.credits {
-    -unity-text-align: upper-center;
+.button-styled {
+    background-image: url("project://database/Assets/Sprites/button-default.png?fileID=-3361420836320573154&guid=7addb54a18e4e4fc6bb6d5fcde62df45&type=3#button-default_0");
+    -unity-slice-left: 70;
+    -unity-slice-right: 70;
+    background-size: 100% 100%;
+    background-position-x: left 0;
+    background-position-y: top 0;
+    -unity-background-scale-mode: stretch-to-fill;
+    background-color: rgba(255, 255, 255, 0);
+    height: 100px;
+    width: 275px;
+    -unity-font-definition: url("project://database/Assets/Fonts/Super%20Serene.ttf?fileID=12800000&guid=a3ef3531610174d23a128ad98ceb17d7&type=3#Super Serene");
     color: rgb(255, 255, 255);
+    padding-bottom: 15px;
+    font-size: 30px;
+    -unity-text-outline-width: 2px;
+    -unity-text-outline-color: rgb(0, 0, 0);
+    padding-right: 0;
+    padding-left: 0;
+    -unity-text-align: middle-center;
+    -unity-font-style: bold;
 }

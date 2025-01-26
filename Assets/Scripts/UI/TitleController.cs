@@ -12,12 +12,16 @@ public class TitleController : MonoBehaviour
 
     private Button _creditsButton;
 
+    private VisualElement _background;
+
     private void Awake()
     {
 
         _playButton = _uiDocument.rootVisualElement.Q<Button>("PlayButton");
 
         _creditsButton = _uiDocument.rootVisualElement.Q<Button>("CreditsButton");
+
+        _background = _uiDocument.rootVisualElement.Q<VisualElement>("Background");
 
         _playButton.RegisterCallback<ClickEvent>(e =>
         {
@@ -28,6 +32,13 @@ public class TitleController : MonoBehaviour
         {
             SceneManager.LoadScene("Credits");
         });
+
+    }
+
+    private void Update()
+    {
+
+        // _background.style.backgroundPositionY = 2;
 
     }
 
