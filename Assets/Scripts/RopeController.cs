@@ -78,6 +78,8 @@ namespace ScottDoxey
 
         private List<GameObject> _spawned = new();
 
+        private List<SphereCollider> _segmentColliders = new();
+
         private void Start()
         {
             SetupRope();
@@ -138,6 +140,8 @@ namespace ScottDoxey
 
             var collider = go.AddComponent<SphereCollider>();
 
+            _segmentColliders.Add(collider);
+
             collider.radius = 0.25f;
             collider.gameObject.layer = LayerMask.NameToLayer("Straw Segment");
 
@@ -188,6 +192,11 @@ namespace ScottDoxey
             {
                 _lineRenderer.SetPosition(i, _joints[i].position);
             }
+        }
+
+        public List<SphereCollider> GetColliders()
+        {
+            return _segmentColliders;
         }
 
     }

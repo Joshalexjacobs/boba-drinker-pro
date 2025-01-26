@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
@@ -53,6 +54,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private List<Boba> _bobas = new ();
 
+    public int drinksCleared = 0;
+
     private async UniTask Start()
     {
         gameState = GameState.Starting;
@@ -65,7 +68,9 @@ public class GameManager : MonoBehaviour
 
         _bobas.Clear();
 
-        foreach (var currentDrinkBobaSpawnPoint in _drinkManager.currentDrink.bobaSpawnPoints)
+        _drinkManager.currentDrink.SpawnSpinners(drinksCleared);
+
+        foreach (var currentDrinkBobaSpawnPoint in _drinkManager.currentDrink.bobaSpawnPoints.RandomRange(Mathf.Clamp(2 * drinksCleared, 2, 8)))
         {
             _bobas.Add(Instantiate(_bobaPrefab, currentDrinkBobaSpawnPoint.position, Quaternion.identity));
         }
@@ -88,7 +93,7 @@ public class GameManager : MonoBehaviour
 
         _countdownText.text = "GO!";
 
-        await UniTask.Delay(3000);
+        await UniTask.Delay(1000);
 
         _startingPanel.SetActive(false);
     }
@@ -101,7 +106,7 @@ public class GameManager : MonoBehaviour
 
             if (gameover)
             {
-                YouWin();
+                StartCoroutine(YouWin());
             }
         }
     }
@@ -119,22 +124,30 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    public void YouWin()
+    public IEnumerator YouWin()
     {
         if (gameState == GameState.Playing)
         {
-            _drinkManager.DespawnDrink();
-
             var strawController = StrawController.LocateStrawController();
 
             if (strawController)
             {
-                StartCoroutine(strawController.SlideOutStraw());
+                strawController.SlideOutStraw();
             }
+
+            _drinkManager.DespawnDrink();
 
             gameState = GameState.Win;
 
             _youWinPanel.SetActive(true);
+
+            drinksCleared++;
+
+            yield return new WaitForSeconds(2f);
+
+            gameState = GameState.Starting;
+
+            Start();
         }
     }
 

@@ -13,6 +13,17 @@ public class DrinkController : MonoBehaviour
 
     public List<Transform> bobaSpawnPoints;
 
+    public List<GameObject> _spinners;
+
+    public void SpawnSpinners(int drinksDrank)
+    {
+        var spinnersToSpawn = Mathf.Clamp(drinksDrank, 0, _spinners.Count);
+
+        foreach (var o in _spinners.RandomRange(spinnersToSpawn)) {
+            o.SetActive(true);
+        }
+    }
+
     public async UniTask AnimateIn(float speed)
     {
         await AnimateToPosition(_animateIn, speed);
