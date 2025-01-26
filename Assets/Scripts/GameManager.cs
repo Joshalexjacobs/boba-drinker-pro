@@ -52,10 +52,7 @@ public class GameManager : MonoBehaviour
     private UIDocument _countdownDocument;
 
     [SerializeField]
-    private GameObject _gameOverPanel;
-
-    [SerializeField]
-    private GameObject _youWinPanel;
+    private UIDocument _gameOverDocument;
 
     [SerializeField]
     private List<Boba> _bobas = new();
@@ -67,6 +64,7 @@ public class GameManager : MonoBehaviour
         gameState = GameState.Starting;
 
         _countdownDocument.enabled = true;
+        _gameOverDocument.enabled = false;
 
         await _drinkManager.SpawnDrink();
 
@@ -117,6 +115,8 @@ public class GameManager : MonoBehaviour
 
             if (gameover)
             {
+                gameState = GameState.Win;
+
                 UniTask.RunOnThreadPool(YouWin);
             }
         }
@@ -126,7 +126,9 @@ public class GameManager : MonoBehaviour
     {
         if (gameState == GameState.Playing)
         {
-            _gameOverPanel.SetActive(true);
+            _gameOverDocument.enabled = true;
+
+            _gameOverDocument.rootVisualElement.Q<Label>().text = $"{drinksCleared}";
         }
     }
 
@@ -139,31 +141,22 @@ public class GameManager : MonoBehaviour
     {
         await UniTask.SwitchToMainThread();
 
-        if (gameState == GameState.Playing)
+        var strawController = StrawController.LocateStrawController();
+
+        if (strawController)
         {
-            var strawController = StrawController.LocateStrawController();
-
-            if (strawController)
-            {
-                strawController.SlideOutStraw();
-
-                await UniTask.Delay(2000);
-            }
-
-            await _drinkManager.DespawnDrink();
-
-            gameState = GameState.Win;
-
-            _youWinPanel.SetActive(true);
-
-            drinksCleared++;
+            strawController.SlideOutStraw();
 
             await UniTask.Delay(2000);
-
-            gameState = GameState.Starting;
-
-            await Start();
         }
+
+        await _drinkManager.DespawnDrink();
+
+        drinksCleared++;
+
+        await UniTask.Delay(2000);
+
+        await Start();
     }
 
 }

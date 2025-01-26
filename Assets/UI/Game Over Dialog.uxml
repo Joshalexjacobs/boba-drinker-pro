@@ -6,7 +6,7 @@
         <engine:Label text="GAME OVER" class="title" />
         <engine:VisualElement style="flex-grow: 0; height: 50px;" />
         <engine:Label text="You drank the drinks." class="text" />
-        <engine:Label text="0" name="Number" class="text" />
+        <engine:Label text="0" name="NumberOfDrinks" class="text" />
         <engine:VisualElement style="flex-grow: 0; height: 50px;" />
         <engine:Button text="Retry" name="RetryButton" class="button-styled" />
         <engine:VisualElement style="flex-grow: 1;" />
