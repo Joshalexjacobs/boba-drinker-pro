@@ -8,6 +8,12 @@ public class CreditsController : MonoBehaviour
     [SerializeField]
     private UIDocument _uiDocument;
 
+    [SerializeField]
+    private Sprite _buttonDefaultSprite;
+
+    [SerializeField]
+    private Sprite _buttonDownSprite;
+
     private Button _backButton;
 
     private void Awake()

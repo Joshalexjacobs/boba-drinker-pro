@@ -8,6 +8,12 @@ public class TitleController : MonoBehaviour
     [SerializeField]
     private UIDocument _uiDocument;
 
+    [SerializeField]
+    private Sprite _buttonDefaultSprite;
+
+    [SerializeField]
+    private Sprite _buttonDownSprite;
+
     private Button _playButton;
 
     private Button _creditsButton;
@@ -20,7 +26,6 @@ public class TitleController : MonoBehaviour
 
         _playButton.RegisterCallback<ClickEvent>(e =>
         {
-            AudioManager.instance.Play(AudioManager.AudioClips.BubblePop);
             SceneManager.LoadScene("Instructions");
         });
 

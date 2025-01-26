@@ -8,6 +8,12 @@ public class InstructionsController : MonoBehaviour
     [SerializeField]
     private UIDocument _uiDocument;
 
+    [SerializeField]
+    private Sprite _buttonDefaultSprite;
+
+    [SerializeField]
+    private Sprite _buttonDownSprite;
+
     private Button _letsGoButton;
 
     private void Awake()
