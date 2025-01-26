@@ -14,6 +14,8 @@ public class DrinkManager : MonoBehaviour
     {
         currentDrink = Instantiate(_drinkPrefab, new Vector2(-10, -2.3f), Quaternion.identity);
 
+        currentDrink.transform.localScale = gameObject.transform.localScale;
+
         await currentDrink.AnimateIn(0.0025f);
     }
 
