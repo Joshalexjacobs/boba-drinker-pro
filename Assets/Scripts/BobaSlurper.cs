@@ -12,9 +12,6 @@ public class BobaSlurper : MonoBehaviour
     private LayerMask _bobaMask;
 
     [SerializeField]
-    private AudioManager _audioManager;
-
-    [SerializeField]
     private LineRenderer _lineRenderer;
 
     private void Update()
@@ -35,8 +32,7 @@ public class BobaSlurper : MonoBehaviour
 
                 // StartCoroutine(boba.SlurpBoba(_lineRenderer));
 
-                _audioManager.Play(AudioManager.AudioClips.Slurp);
-
+                AudioManager.instance.Play(AudioManager.AudioClips.Slurp);
                 HapticsController.TriggerHapticFeedback();
             // }
         }
