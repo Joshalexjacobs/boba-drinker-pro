@@ -137,7 +137,7 @@ public class GameManager : MonoBehaviour
         {
             _gameOverDocument.enabled = true;
 
-            _gameOverDocument.rootVisualElement.Q<Label>().text = $"{drinksCleared}";
+            _gameOverDocument.rootVisualElement.Q<Label>("NumberOfDrinks").text = $"{drinksCleared}";
         }
     }
 
