@@ -3,14 +3,11 @@
     <engine:VisualElement name="Background" style="flex-grow: 1; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: url(&quot;project://database/Assets/Sprites/repeating-pattern-uv-offset.png?fileID=1464160518204253622&amp;guid=7a64afdeaebda4aaeb44e1664b8d6c73&amp;type=3#repeating-pattern-uv-offset_0&quot;); -unity-background-scale-mode: scale-and-crop; background-size: 100px 100px; background-repeat: repeat repeat; background-position-x: left 0; background-position-y: top 0;" />
     <engine:VisualElement style="flex-grow: 1; align-items: center;">
         <engine:VisualElement style="flex-grow: 1;" />
-        <engine:Label text="Credits" class="title" />
-        <engine:VisualElement style="flex-grow: 0; height: 50px;" />
-        <engine:VisualElement style="flex-grow: 1; width: 400px;">
-            <engine:Label text="&lt;b&gt;Developer:&lt;/b&gt; Josh Jacobs" class="text" style="-unity-text-align: upper-center;" />
-            <engine:Label text="&lt;b&gt;Designer:&lt;/b&gt; Scott Petrovic" class="text" style="-unity-text-align: upper-center;" />
-            <engine:Label text="&lt;b&gt;Developer:&lt;/b&gt; Scott Doxey" class="text" style="-unity-text-align: upper-center;" />
-        </engine:VisualElement>
-        <engine:Button text="← Back" name="BackButton" class="button-styled" />
+        <engine:Label text="INSTRUCTIONS" class="title" style="-unity-text-outline-color: rgb(174, 23, 22);" />
+        <engine:VisualElement style="flex-grow: 1;" />
+        <engine:Label text="Slurp up all of the boba before your drink all the tea" class="text" style="-unity-text-align: upper-center; color: rgb(108, 56, 79); font-size: 30px; width: 300px;" />
+        <engine:VisualElement style="flex-grow: 1;" />
+        <engine:Button text="Lets Go!" name="LetsGoButton" class="button-styled" />
         <engine:VisualElement style="flex-grow: 1;" />
     </engine:VisualElement>
 </engine:UXML>
