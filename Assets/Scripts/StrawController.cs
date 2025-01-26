@@ -45,8 +45,9 @@ public class StrawController : MonoBehaviour {
   public IEnumerator SlideOutStraw()
   {
       canTouch = false;
-
-      yield return CandyCoded.Animate.MoveTo(gameObject, _idlePoint.position, 1f,  Space.World);
+      
+      yield return CandyCoded.Animate.MoveTo(gameObject, _idlePoint.position, 1f, Space.World);
+      Debug.Log("fuck unity 2222");
   }
 
   private void Update() {

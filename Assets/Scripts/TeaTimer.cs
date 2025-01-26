@@ -39,6 +39,8 @@ public class TeaTimer : MonoBehaviour
 
         _gameManager = GameManager.LocateGameManager();
 
+        _slurpSpeed *= _gameManager.drinksCleared == 0 ? 1 : _gameManager.drinksCleared;
+
         _teaSpriteHeight = _spriteRenderer.size.y;
     }
 
