@@ -12,6 +12,9 @@ public class BobaSlurper : MonoBehaviour
     private LayerMask _bobaMask;
 
     [SerializeField]
+    private AudioManager _audioManager;
+
+    [SerializeField]
     private LineRenderer _lineRenderer;
 
     private void Update()
@@ -28,6 +31,7 @@ public class BobaSlurper : MonoBehaviour
             if (boba)
             {
                 StartCoroutine(boba.SlurpBoba(_lineRenderer));
+                _audioManager.Play(AudioManager.AudioClips.Slurp);
             }
         }
     }
