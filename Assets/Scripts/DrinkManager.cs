@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -23,7 +22,7 @@ public class DrinkManager : MonoBehaviour
     {
         await currentDrink.AnimateOut(0.0025f);
 
-        Destroy(currentDrink);
+        Destroy(currentDrink.gameObject);
     }
 
 }
