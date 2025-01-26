@@ -70,6 +70,13 @@ public class GameManager : MonoBehaviour
             _bobas.Add(Instantiate(_bobaPrefab, currentDrinkBobaSpawnPoint.position, Quaternion.identity));
         }
 
+        var strawController = StrawController.LocateStrawController();
+
+        if (strawController)
+        {
+            StartCoroutine(strawController.SlideInStraw());
+        }
+
         for (int i = seconds; i > 0f; i--)
         {
             _countdownText.text = $"{i}";
@@ -117,6 +124,13 @@ public class GameManager : MonoBehaviour
         if (gameState == GameState.Playing)
         {
             _drinkManager.DespawnDrink();
+
+            var strawController = StrawController.LocateStrawController();
+
+            if (strawController)
+            {
+                StartCoroutine(strawController.SlideOutStraw());
+            }
 
             gameState = GameState.Win;
 

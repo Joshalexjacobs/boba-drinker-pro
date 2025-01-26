@@ -21,7 +21,7 @@ public class Boba : MonoBehaviour
         {
             var destination = lineRenderer.GetPosition(i);
 
-            yield return CandyCoded.Animate.MoveTo(gameObject, destination, 0.05f, Space.World);
+            yield return CandyCoded.Animate.MoveTo(gameObject, destination, 0.01f, Space.World);
         }
 
         Destroy(gameObject);

@@ -25,15 +25,20 @@ public class BobaSlurper : MonoBehaviour
 
         if (Physics.Raycast(transform.position, direction, out hit, _distance, _bobaMask))
         {
-            // Destroy(hit.transform.gameObject);
-            var boba = hit.transform.gameObject.GetComponent<Boba>();
+            Destroy(hit.transform.gameObject);
 
-            if (boba)
-            {
-                StartCoroutine(boba.SlurpBoba(_lineRenderer));
+            // var boba = hit.transform.gameObject.GetComponent<Boba>();
+
+            // if (boba)
+            // {
+                // Destroy(boba.gameObject);
+
+                // StartCoroutine(boba.SlurpBoba(_lineRenderer));
+
                 _audioManager.Play(AudioManager.AudioClips.Slurp);
+
                 HapticsController.TriggerHapticFeedback();
-            }
+            // }
         }
     }
 
