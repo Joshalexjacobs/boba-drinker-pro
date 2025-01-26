@@ -1,9 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
-<engine:UXML
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:engine="UnityEngine.UIElements"
-    xmlns:editor="UnityEditor.UIElements"
-    xsi:noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd"
->
-    
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Styles.uss?fileID=7433441132597879392&amp;guid=3ea293c02ba9d469985d2c31849fef6d&amp;type=3#Styles" />
+    <engine:VisualElement name="Background" style="flex-grow: 1; position: absolute; top: 20%; left: 0; right: 0; bottom: 20%; background-image: url(&quot;project://database/Assets/Sprites/dialog-small.png?fileID=-9002944109343137548&amp;guid=07568639965a547c4b65c1a7a93f5634&amp;type=3#dialog-small_0&quot;); -unity-background-scale-mode: scale-and-crop; background-size: contain; background-repeat: round no-repeat; background-position-x: center 0; background-position-y: center 0;" />
+    <engine:VisualElement style="flex-grow: 0; align-items: center; top: 20%; bottom: 0; height: 60%; justify-content: center;">
+        <engine:Label text="3" name="CountdownLabel" class="title" style="font-size: 100px;" />
+    </engine:VisualElement>
 </engine:UXML>
