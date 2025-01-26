@@ -20,11 +20,13 @@ public class TitleController : MonoBehaviour
 
         _playButton.RegisterCallback<ClickEvent>(e =>
         {
+            AudioManager.instance.Play(AudioManager.AudioClips.BubblePop);
             SceneManager.LoadScene("Instructions");
         });
 
         _creditsButton.RegisterCallback<ClickEvent>(e =>
         {
+            AudioManager.instance.Play(AudioManager.AudioClips.BubblePop);
             SceneManager.LoadScene("Credits");
         });
     }

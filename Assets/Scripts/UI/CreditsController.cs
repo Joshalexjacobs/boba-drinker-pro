@@ -17,6 +17,7 @@ public class CreditsController : MonoBehaviour
 
         _backButton.RegisterCallback<ClickEvent>(e =>
         {
+            AudioManager.instance.Play(AudioManager.AudioClips.BubblePop);
             SceneManager.LoadScene("Title");
         });
 

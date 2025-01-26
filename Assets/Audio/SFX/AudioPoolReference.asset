@@ -27,3 +27,16 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 8791590efb4184b90a520950442fe174, type: 3}
     - {fileID: 8300000, guid: 90fc91b0b15584c1d9b35b7e1875d612, type: 3}
     - {fileID: 8300000, guid: 11853e292b22249fa9cceafc2efda004, type: 3}
+  - _pitch:
+      min: 1
+      max: 1
+    _volume:
+      min: 1
+      max: 1
+    _name: BubblePop
+    _clips:
+    - {fileID: 8300000, guid: ea1e2d6be059441d7b4b0ba141a2dbff, type: 3}
+    - {fileID: 8300000, guid: 445b020a8d4f34314bf8178550b40009, type: 3}
+    - {fileID: 8300000, guid: 314bc436490e94ca9838720a845e3920, type: 3}
+    - {fileID: 8300000, guid: 465e4cfa8fead40b7bf7cb023250688b, type: 3}
+    - {fileID: 8300000, guid: f2413209508b645b0a2a74b081dd4edc, type: 3}

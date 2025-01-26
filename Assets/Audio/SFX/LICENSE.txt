@@ -3,3 +3,4 @@ slurp p50s A.aif by volivieri -- https://freesound.org/s/80147/ -- License: Attr
 slurp p50s C.aif by volivieri -- https://freesound.org/s/80149/ -- License: Attribution 4.0
 slurp p50s B.aif by volivieri -- https://freesound.org/s/80148/ -- License: Attribution 4.0
 slurp p25s B.aif by volivieri -- https://freesound.org/s/80144/ -- License: Attribution 4.0
+DSGNSynth_bubble pops synth singular_Funky Audio_FASS.wav by Funky_Audio -- https://freesound.org/s/698818/ -- License: Creative Commons 0

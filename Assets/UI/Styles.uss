@@ -29,9 +29,9 @@
 }
 
 .button-styled {
-    background-image: url("project://database/Assets/Sprites/button-default.png?fileID=-3361420836320573154&guid=7addb54a18e4e4fc6bb6d5fcde62df45&type=3#button-default_0");
-    -unity-slice-left: 70;
-    -unity-slice-right: 70;
+    background-image: url("project://database/Assets/Sprites/button-base.png?fileID=-6262830246024673499&guid=2e0c5461d84eb4eaf99a762641d74edd&type=3#button-base_0");
+    -unity-slice-left: 140;
+    -unity-slice-right: 150;
     background-size: 100% 100%;
     background-position-x: left 0;
     background-position-y: top 0;
@@ -49,6 +49,8 @@
     padding-left: 0;
     -unity-text-align: middle-center;
     -unity-font-style: bold;
+    scale: 1 1;
+    -unity-slice-scale: 0.3px;
     border-top-width: 0;
     border-right-width: 0;
     border-bottom-width: 0;

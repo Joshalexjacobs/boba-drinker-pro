@@ -16,6 +16,7 @@ public class InstructionsController : MonoBehaviour
 
         _letsGoButton.RegisterCallback<ClickEvent>(e =>
         {
+            AudioManager.instance.Play(AudioManager.AudioClips.BubblePop);
             SceneManager.LoadScene("SampleScene");
         });
     }
