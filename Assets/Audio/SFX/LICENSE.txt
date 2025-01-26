@@ -1,0 +1,5 @@
+slurp p25s D.aif by volivieri -- https://freesound.org/s/80146/ -- License: Attribution 4.0
+slurp p50s A.aif by volivieri -- https://freesound.org/s/80147/ -- License: Attribution 4.0
+slurp p50s C.aif by volivieri -- https://freesound.org/s/80149/ -- License: Attribution 4.0
+slurp p50s B.aif by volivieri -- https://freesound.org/s/80148/ -- License: Attribution 4.0
+slurp p25s B.aif by volivieri -- https://freesound.org/s/80144/ -- License: Attribution 4.0
