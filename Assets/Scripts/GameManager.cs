@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using CandyCoded;
 using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
@@ -69,6 +68,8 @@ public class GameManager : MonoBehaviour
 
         _bobas.Clear();
 
+        _drinkManager.currentDrink.SpawnSpinners(drinksCleared);
+
         foreach (var currentDrinkBobaSpawnPoint in _drinkManager.currentDrink.bobaSpawnPoints.RandomRange(Mathf.Clamp(2 * drinksCleared, 2, 8)))
         {
             _bobas.Add(Instantiate(_bobaPrefab, currentDrinkBobaSpawnPoint.position, Quaternion.identity));
@@ -131,7 +132,7 @@ public class GameManager : MonoBehaviour
 
             if (strawController)
             {
-                yield return StartCoroutine(strawController.SlideOutStraw());
+                strawController.SlideOutStraw();
             }
 
             _drinkManager.DespawnDrink();
