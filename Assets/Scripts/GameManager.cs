@@ -1,7 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,17 +9,34 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
 
+    private static readonly Lazy<GameManager> _instance = new (FindGameManager);
+
+    public static GameManager LocateGameManager() {
+        if (_instance.IsValueCreated)
+            return _instance.Value;
+
+        return FindGameManager();
+    }
+
+    private static GameManager FindGameManager() {
+        return FindObjectOfType<GameManager>();
+    }
+
     public enum GameState
     {
+        Starting,
         Playing,
         GameOver,
         Win,
     }
 
-    public GameState gameState = GameState.Playing;
+    public GameState gameState = GameState.Starting;
 
     [SerializeField]
-    private TeaTimer _teaTimer;
+    private DrinkManager _drinkManager;
+
+    [SerializeField]
+    private Boba _bobaPrefab;
 
     [SerializeField]
     private GameObject _startingPanel;
@@ -34,26 +51,37 @@ public class GameManager : MonoBehaviour
     private GameObject _youWinPanel;
 
     [SerializeField]
-    private List<Boba> _bobas;
+    private List<Boba> _bobas = new ();
 
-    private IEnumerator Start()
+    private async UniTask Start()
     {
+        gameState = GameState.Starting;
+
+        await _drinkManager.SpawnDrink();
+
         int seconds = 3;
 
-        yield return new WaitForSeconds(1f);
+        await UniTask.Delay(1000);
+
+        _bobas.Clear();
+
+        foreach (var currentDrinkBobaSpawnPoint in _drinkManager.currentDrink.bobaSpawnPoints)
+        {
+            _bobas.Add(Instantiate(_bobaPrefab, currentDrinkBobaSpawnPoint.position, Quaternion.identity));
+        }
 
         for (int i = seconds; i > 0f; i--)
         {
             _countdownText.text = $"{i}";
 
-            yield return new WaitForSeconds(1f);
+            await UniTask.Delay(1000);
         }
 
         gameState = GameState.Playing;
 
         _countdownText.text = "GO!";
 
-        yield return new WaitForSeconds(3f);
+        await UniTask.Delay(3000);
 
         _startingPanel.SetActive(false);
     }
@@ -88,6 +116,8 @@ public class GameManager : MonoBehaviour
     {
         if (gameState == GameState.Playing)
         {
+            _drinkManager.DespawnDrink();
+
             gameState = GameState.Win;
 
             _youWinPanel.SetActive(true);

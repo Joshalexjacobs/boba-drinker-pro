@@ -22,13 +22,8 @@ public class TeaTimer : MonoBehaviour
     [SerializeField]
     private BoxCollider _boxCollider;
 
-    [SerializeField]
-    private ParticleSystem _teaParticles;
+    private StrawController _strawController;
 
-    [SerializeField]
-    private ParticleSystem _slurpingParticle;
-
-    [SerializeField]
     private GameManager _gameManager;
 
     private float _teaSpriteHeight = 0f;
@@ -40,6 +35,10 @@ public class TeaTimer : MonoBehaviour
 
     private void Start()
     {
+        _strawController = StrawController.LocateStrawController();
+
+        _gameManager = GameManager.LocateGameManager();
+
         _teaSpriteHeight = _spriteRenderer.size.y;
     }
 
@@ -60,9 +59,7 @@ public class TeaTimer : MonoBehaviour
 
                 currentState = TeaTimerState.GameOver;
 
-                _slurpingParticle.Stop();
-
-                _teaParticles.Stop();
+                _strawController.StopParticles();
             }
 
             UpdateTeaSpriteHeight();
@@ -86,9 +83,7 @@ public class TeaTimer : MonoBehaviour
             {
                 currentState = TeaTimerState.Slurping;
 
-                _slurpingParticle.Play();
-
-                _teaParticles.Play();
+                _strawController.StartParticles();
             }
         }
     }
@@ -101,9 +96,7 @@ public class TeaTimer : MonoBehaviour
             {
                 currentState = TeaTimerState.Paused;
 
-                _slurpingParticle.Stop();
-
-                _teaParticles.Stop();
+                _strawController.StopParticles();
             }
         }
     }

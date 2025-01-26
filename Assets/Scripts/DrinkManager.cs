@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -5,28 +6,22 @@ public class DrinkManager : MonoBehaviour
 {
 
     [SerializeField]
-    private GameObject _drinkPrefab;
+    private DrinkController _drinkPrefab;
 
-    [SerializeField]
-    private bool _spawning = true;
+    public DrinkController currentDrink;
 
-    private async UniTask Start()
+    public async UniTask SpawnDrink()
     {
-        while (_spawning)
-        {
-            var spawnedDrink = Instantiate(_drinkPrefab, new Vector2(-10, -2.3f), Quaternion.identity);
+        currentDrink = Instantiate(_drinkPrefab, new Vector2(-10, -2.3f), Quaternion.identity);
 
-            var drinkController = spawnedDrink.GetComponent<DrinkController>();
+        await currentDrink.AnimateIn(0.0025f);
+    }
 
-            await drinkController.AnimateIn(0.0025f);
+    public async UniTask DespawnDrink()
+    {
+        await currentDrink.AnimateOut(0.0025f);
 
-            await UniTask.Delay(1000);
-
-            await drinkController.AnimateOut(0.0025f);
-
-            Destroy(spawnedDrink);
-        }
-
+        Destroy(currentDrink);
     }
 
 }
