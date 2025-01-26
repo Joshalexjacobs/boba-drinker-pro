@@ -130,7 +130,6 @@ GameObject:
   - component: {fileID: 248680797}
   - component: {fileID: 248680796}
   - component: {fileID: 248680798}
-  - component: {fileID: 248680799}
   m_Layer: 5
   m_Name: UIDocument
   m_TagString: Untagged
@@ -185,19 +184,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uiDocument: {fileID: 248680796}
---- !u!114 &248680799
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 248680794}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5eb4191581a04615aea05cab6cfe4bb5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _uiDocument: {fileID: 248680796}
+  _buttonDefaultSprite: {fileID: -6262830246024673499, guid: 2e0c5461d84eb4eaf99a762641d74edd, type: 3}
+  _buttonDownSprite: {fileID: -1800879404011220575, guid: 2fa8dd010f2874e9087374ff1f09332c, type: 3}
 --- !u!1 &1816779991
 GameObject:
   m_ObjectHideFlags: 0
