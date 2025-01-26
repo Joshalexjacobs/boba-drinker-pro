@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -9,6 +10,8 @@ public class DrinkController : MonoBehaviour
 
     [SerializeField]
     private AnimationCurve _animateOut;
+
+    public List<Transform> bobaSpawnPoints;
 
     public async UniTask AnimateIn(float speed)
     {
