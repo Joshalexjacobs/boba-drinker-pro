@@ -4,6 +4,9 @@
     flex-grow: 0;
     color: rgb(255, 255, 255);
     -unity-font-style: bold;
+    -unity-font-definition: url("project://database/Assets/Fonts/Super%20Serene.ttf?fileID=12800000&guid=a3ef3531610174d23a128ad98ceb17d7&type=3#Super Serene");
+    -unity-text-outline-width: 3px;
+    -unity-text-outline-color: rgb(0, 0, 0);
 }
 
 .button {
@@ -19,10 +22,10 @@
     border-bottom-left-radius: 10px;
 }
 
-.credits {
-    -unity-text-align: upper-center;
-    color: rgb(255, 255, 255);
-    font-size: 20px;
+.text {
+    -unity-font-definition: url("project://database/Assets/Fonts/Super%20Serene.ttf?fileID=12800000&guid=a3ef3531610174d23a128ad98ceb17d7&type=3#Super Serene");
+    font-size: 25px;
+    white-space: normal;
 }
 
 .button-styled {

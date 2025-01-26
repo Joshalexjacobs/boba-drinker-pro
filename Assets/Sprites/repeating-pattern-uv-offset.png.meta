@@ -173,7 +173,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      repeating-pattern-uv-offset_0: 1464160518204253622
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
