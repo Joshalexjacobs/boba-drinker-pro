@@ -59,6 +59,15 @@ public class GameManager : MonoBehaviour
 
     public int drinksCleared = 0;
 
+    private void Awake()
+    {
+        _gameOverDocument.rootVisualElement.Q<Button>("RetryButton").RegisterCallback<ClickEvent>(e =>
+        {
+            AudioManager.instance.Play(AudioManager.AudioClips.BubblePop);
+            SceneManager.LoadScene("Instructions");
+        });
+    }
+
     private async UniTask Start()
     {
         gameState = GameState.Starting;
