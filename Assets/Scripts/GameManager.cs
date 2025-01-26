@@ -131,9 +131,7 @@ public class GameManager : MonoBehaviour
 
             if (strawController)
             {
-                Debug.Log("helloo??");
                 yield return StartCoroutine(strawController.SlideOutStraw());
-                Debug.Log("fuck unity");
             }
 
             _drinkManager.DespawnDrink();
