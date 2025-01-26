@@ -32,6 +32,7 @@ public class BobaSlurper : MonoBehaviour
             {
                 StartCoroutine(boba.SlurpBoba(_lineRenderer));
                 _audioManager.Play(AudioManager.AudioClips.Slurp);
+                HapticsController.TriggerHapticFeedback();
             }
         }
     }
