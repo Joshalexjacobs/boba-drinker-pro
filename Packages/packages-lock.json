@@ -1,11 +1,11 @@
 {
   "dependencies": {
-    "com.cysharp.unitask": {
-      "version": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
+    "com.scottdoxey.unityropecontroller": {
+      "version": "https://github.com/neogeek/UnityRopeController.git",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "8042b29ff87dd5506d7aad72bd6d8d7405985f27"
+      "hash": "49277cb11d76f8c2070cf55413f9f50e2cb1b464"
     },
     "com.unity.2d.animation": {
       "version": "10.1.4",
