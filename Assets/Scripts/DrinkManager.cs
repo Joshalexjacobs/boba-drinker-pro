@@ -49,6 +49,8 @@ public class DrinkManager : MonoBehaviour
 
             // yield return new WaitForSeconds(1f);
 
+            spawnedDrinkController.StartingDrinking();
+
             yield return spawnedDrinkController.Drink();
 
             yield return CandyCoded.Animate.MoveTo(spawnedGameObject.gameObject, _despawnPoint.position, 1,
