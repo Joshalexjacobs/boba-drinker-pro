@@ -18,6 +18,8 @@ public class DrinkController : MonoBehaviour
 
     private bool _isDrinking = false;
 
+    public int bobaRemaining { get; private set; } = 0;
+
     public void StartingDrinking(float drinkSpeed = 100)
     {
         _drinkSpeed = drinkSpeed;

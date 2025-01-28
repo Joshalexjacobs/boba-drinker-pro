@@ -47,11 +47,14 @@ public class DrinkManager : MonoBehaviour
 
             yield return CandyCoded.Animate.MoveTo(spawnedGameObject.gameObject, _restPoint.position, 1, Space.World);
 
-            // yield return new WaitForSeconds(1f);
-
             spawnedDrinkController.StartingDrinking();
 
             yield return spawnedDrinkController.Drink();
+
+            if (spawnedDrinkController.bobaRemaining > 0)
+            {
+                GameManager.SwitchState(GameState.GameOver);
+            }
 
             yield return CandyCoded.Animate.MoveTo(spawnedGameObject.gameObject, _despawnPoint.position, 1,
                 Space.World);
@@ -59,8 +62,6 @@ public class DrinkManager : MonoBehaviour
             _spawnedDrinks.Remove(spawnedGameObject);
 
             Destroy(spawnedGameObject);
-
-            // GameManager.SwitchState(GameState.GameOver);
 
             yield return null;
         }
