@@ -11,6 +11,8 @@ public enum GameState
 
     GameLoop,
 
+    GameOver,
+
     Credits
 
 }
@@ -27,10 +29,13 @@ public class GameManager : MonoBehaviour
     private UIDocument _instructionsDocument;
 
     [SerializeField]
-    private UIDocument _creditsDocument;
+    private DrinkManager _drinkManager;
 
     [SerializeField]
-    private DrinkManager _drinkManager;
+    private UIDocument _gameOverDocument;
+
+    [SerializeField]
+    private UIDocument _creditsDocument;
 
     private GameState _currentState = GameState.Title;
 
@@ -66,6 +71,10 @@ public class GameManager : MonoBehaviour
                 _instance.SwitchToGameLoopState();
 
                 break;
+            case GameState.GameOver:
+                _instance.SwitchToGameOverState();
+
+                break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(state), state, null);
         }
@@ -87,6 +96,11 @@ public class GameManager : MonoBehaviour
         SwitchToGameObject(_drinkManager.gameObject);
     }
 
+    private void SwitchToGameOverState()
+    {
+        SwitchToGameObject(_gameOverDocument.gameObject);
+    }
+
     private void SwitchToCreditsState()
     {
         SwitchToGameObject(_creditsDocument.gameObject);
@@ -97,6 +111,7 @@ public class GameManager : MonoBehaviour
         _titleDocument.gameObject.SetActive(newActiveGameObject.Equals(_titleDocument.gameObject));
         _instructionsDocument.gameObject.SetActive(newActiveGameObject.Equals(_instructionsDocument.gameObject));
         _drinkManager.gameObject.SetActive(newActiveGameObject.Equals(_drinkManager.gameObject));
+        _gameOverDocument.gameObject.SetActive(newActiveGameObject.Equals(_gameOverDocument.gameObject));
         _creditsDocument.gameObject.SetActive(newActiveGameObject.Equals(_creditsDocument.gameObject));
     }
 

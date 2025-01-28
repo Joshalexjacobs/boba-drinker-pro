@@ -58,6 +58,8 @@ public class DrinkManager : MonoBehaviour
 
             Destroy(spawnedGameObject);
 
+            GameManager.SwitchState(GameState.GameOver);
+
             yield return null;
         }
     }

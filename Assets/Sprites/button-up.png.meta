@@ -139,7 +139,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: button-base_0
+      name: button-up_0
       rect:
         serializedVersion: 2
         x: 0
@@ -174,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      button-base_0: -6262830246024673499
+      button-up_0: -6262830246024673499
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
