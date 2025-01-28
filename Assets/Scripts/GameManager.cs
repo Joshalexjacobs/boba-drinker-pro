@@ -1,171 +1,90 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Cysharp.Threading.Tasks;
-using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+
+public enum GameState
+{
+
+    Title,
+
+    Instructions,
+
+    Credits
+
+}
 
 public class GameManager : MonoBehaviour
 {
 
-    private static readonly Lazy<GameManager> _instance = new(FindGameManager);
-
-    public static GameManager LocateGameManager()
-    {
-        if (_instance.IsValueCreated)
-            return _instance.Value;
-
-        return FindGameManager();
-    }
-
-    private static GameManager FindGameManager()
-    {
-        return FindObjectOfType<GameManager>();
-    }
-
-    public enum GameState
-    {
-
-        Starting,
-
-        Playing,
-
-        GameOver,
-
-        Win,
-
-    }
-
-    public GameState gameState = GameState.Starting;
+    private static GameManager _instance;
 
     [SerializeField]
-    private DrinkManager _drinkManager;
+    private UIDocument _titleDocument;
 
     [SerializeField]
-    private Boba _bobaPrefab;
+    private UIDocument _instructionsDocument;
 
     [SerializeField]
-    private UIDocument _countdownDocument;
+    private UIDocument _creditsDocument;
 
-    [SerializeField]
-    private UIDocument _gameOverDocument;
-
-    [SerializeField]
-    private List<Boba> _bobas = new();
-
-    public int drinksCleared = 0;
+    private GameState _currentState = GameState.Title;
 
     private void Awake()
     {
-        _gameOverDocument.rootVisualElement.Q<Button>("RetryButton").RegisterCallback<ClickEvent>(e =>
-        {
-            AudioManager.instance.Play(AudioManager.AudioClips.BubblePop);
-            SceneManager.LoadScene("Instructions");
-        });
+        _instance = this;
     }
 
-    private async UniTask Start()
+    private void Start()
     {
-        gameState = GameState.Starting;
-
-        _countdownDocument.enabled = true;
-        _gameOverDocument.enabled = false;
-
-        await _drinkManager.SpawnDrink();
-
-        int seconds = 3;
-
-        await UniTask.Delay(1000);
-
-        _bobas.Clear();
-
-        _drinkManager.currentDrink.SpawnSpinners(drinksCleared);
-
-        foreach (var currentDrinkBobaSpawnPoint in _drinkManager.currentDrink.bobaSpawnPoints.RandomRange(
-                     Mathf.Clamp(2 * drinksCleared, 2, 8)))
-        {
-            _bobas.Add(Instantiate(_bobaPrefab, currentDrinkBobaSpawnPoint.position, Quaternion.identity));
-        }
-
-        var strawController = StrawController.LocateStrawController();
-
-        if (strawController)
-        {
-            StartCoroutine(strawController.SlideInStraw());
-        }
-
-        var countdownText = _countdownDocument.rootVisualElement.Q<Label>("CountdownLabel");
-
-        for (int i = seconds; i > 0f; i--)
-        {
-            countdownText.text = $"{i}";
-
-            await UniTask.Delay(1000);
-        }
-
-        gameState = GameState.Playing;
-
-        countdownText.text = "GO!";
-
-        await UniTask.Delay(1000);
-
-        _countdownDocument.enabled = false;
+        SwitchState(_currentState);
     }
 
-    private void Update()
+    public static void SwitchState(GameState state)
     {
-        if (gameState == GameState.Playing)
+
+        switch (state)
         {
-            var gameover = _bobas.Count((boba) => boba != null) == 0;
 
-            if (gameover)
-            {
-                gameState = GameState.Win;
+            case GameState.Title:
+                _instance.SwitchToTitleState();
 
-                UniTask.RunOnThreadPool(YouWin);
-            }
-        }
-    }
+                break;
+            case GameState.Instructions:
+                _instance.SwitchToInstructionsState();
 
-    public void GameOver()
-    {
-        if (gameState == GameState.Playing)
-        {
-            _gameOverDocument.enabled = true;
+                break;
+            case GameState.Credits:
+                _instance.SwitchToCreditsState();
 
-            _gameOverDocument.rootVisualElement.Q<Label>("NumberOfDrinks").text = $"{drinksCleared}";
-        }
-    }
-
-    public void Retry()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
-    public async UniTask YouWin()
-    {
-        await UniTask.SwitchToMainThread();
-
-        var strawController = StrawController.LocateStrawController();
-
-        if (strawController)
-        {
-            strawController.SlideOutStraw();
-
-            await UniTask.Delay(2000);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(state), state, null);
         }
 
-        await _drinkManager.DespawnDrink();
+    }
 
-        drinksCleared++;
+    private void SwitchToTitleState()
+    {
+        _titleDocument.gameObject.SetActive(true);
 
-        await UniTask.Delay(2000);
+        _instructionsDocument.gameObject.SetActive(false);
+        _creditsDocument.gameObject.SetActive(false);
+    }
 
-        await Start();
+    private void SwitchToInstructionsState()
+    {
+        _instructionsDocument.gameObject.SetActive(true);
+
+        _titleDocument.gameObject.SetActive(false);
+        _creditsDocument.gameObject.SetActive(false);
+    }
+
+    private void SwitchToCreditsState()
+    {
+        _creditsDocument.gameObject.SetActive(true);
+
+        _titleDocument.gameObject.SetActive(false);
+        _instructionsDocument.gameObject.SetActive(false);
     }
 
 }

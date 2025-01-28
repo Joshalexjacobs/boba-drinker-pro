@@ -4,25 +4,29 @@ using UnityEngine.UIElements;
 public class BackgroundAnimationController : MonoBehaviour
 {
 
-    public const float backgroundMovementSpeed = 20f;
+    [SerializeField]
+    private float _backgroundMovementSpeed = 20f;
 
-    public static Vector2 backgroundPositionOffset = Vector2.zero;
+    [SerializeField]
+    private Vector2 _backgroundMovementDirection = new(1f, -1f);
+
+    private static Vector2 _backgroundPositionOffset = Vector2.zero;
 
     [SerializeField]
     private UIDocument _uiDocument;
 
     private VisualElement _background;
 
-    private void Awake()
+    private void OnEnable()
     {
         _background = _uiDocument.rootVisualElement.Q<VisualElement>("Background");
     }
 
     private void Update()
     {
-        backgroundPositionOffset += Vector2.one * backgroundMovementSpeed * Time.deltaTime;
+        _backgroundPositionOffset += _backgroundMovementDirection * _backgroundMovementSpeed * Time.deltaTime;
 
-        _background.SetBackgroundPosition(backgroundPositionOffset);
+        _background.SetBackgroundPosition(_backgroundPositionOffset);
     }
 
 }

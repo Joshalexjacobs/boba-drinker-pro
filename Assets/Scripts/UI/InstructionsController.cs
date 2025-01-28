@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class InstructionsController : MonoBehaviour
@@ -16,15 +15,25 @@ public class InstructionsController : MonoBehaviour
 
     private Button _letsGoButton;
 
-    private void Awake()
+    private void OnEnable()
     {
         _letsGoButton = _uiDocument.rootVisualElement.Q<Button>("LetsGoButton");
 
-        _letsGoButton.RegisterCallback<ClickEvent>(e =>
-        {
-            AudioManager.instance.Play(AudioManager.AudioClips.BubblePop);
-            SceneManager.LoadScene("Straw Test");
-        });
+        _letsGoButton.RegisterBackgroundToggleImageEvents(_buttonDefaultSprite, _buttonDownSprite);
+
+        _letsGoButton.RegisterCallback<ClickEvent>(LetsGoButtonHandler);
+    }
+
+    private void LetsGoButtonHandler(ClickEvent e)
+    {
+        AudioManager.instance.Play(AudioManager.AudioClips.BubblePop);
+    }
+
+    private void OnDisable()
+    {
+        _letsGoButton.UnregisterBackgroundToggleImageEvents();
+
+        _letsGoButton.UnregisterCallback<ClickEvent>(LetsGoButtonHandler);
     }
 
 }

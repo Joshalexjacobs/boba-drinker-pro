@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class CreditsController : MonoBehaviour
@@ -16,17 +15,26 @@ public class CreditsController : MonoBehaviour
 
     private Button _backButton;
 
-    private void Awake()
+    private void OnEnable()
     {
-
         _backButton = _uiDocument.rootVisualElement.Q<Button>("BackButton");
 
-        _backButton.RegisterCallback<ClickEvent>(e =>
-        {
-            AudioManager.instance.Play(AudioManager.AudioClips.BubblePop);
-            SceneManager.LoadScene("Title");
-        });
+        _backButton.RegisterBackgroundToggleImageEvents(_buttonDefaultSprite, _buttonDownSprite);
 
+        _backButton.RegisterCallback<ClickEvent>(BackButtonHandler);
+    }
+
+    private void BackButtonHandler(ClickEvent _)
+    {
+        AudioManager.instance.Play(AudioManager.AudioClips.BubblePop);
+        GameManager.SwitchState(GameState.Title);
+    }
+
+    private void OnDisable()
+    {
+        _backButton.UnregisterBackgroundToggleImageEvents();
+
+        _backButton.UnregisterCallback<ClickEvent>(BackButtonHandler);
     }
 
 }

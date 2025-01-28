@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class TitleController : MonoBehaviour
@@ -18,23 +17,39 @@ public class TitleController : MonoBehaviour
 
     private Button _creditsButton;
 
-    private void Awake()
+    private void OnEnable()
     {
         _playButton = _uiDocument.rootVisualElement.Q<Button>("PlayButton");
-
         _creditsButton = _uiDocument.rootVisualElement.Q<Button>("CreditsButton");
 
-        _playButton.RegisterCallback<ClickEvent>(e =>
-        {
-            AudioManager.instance.Play(AudioManager.AudioClips.BubblePop);
-            SceneManager.LoadScene("Instructions");
-        });
+        _playButton.RegisterBackgroundToggleImageEvents(_buttonDefaultSprite, _buttonDownSprite);
+        _creditsButton.RegisterBackgroundToggleImageEvents(_buttonDefaultSprite, _buttonDownSprite);
 
-        _creditsButton.RegisterCallback<ClickEvent>(e =>
-        {
-            AudioManager.instance.Play(AudioManager.AudioClips.BubblePop);
-            SceneManager.LoadScene("Credits");
-        });
+        _playButton.RegisterCallback<ClickEvent>(PlayButtonClickHandler);
+        _creditsButton.RegisterCallback<ClickEvent>(CreditsButtonClickHandler);
+    }
+
+    private void PlayButtonClickHandler(ClickEvent e)
+    {
+        AudioManager.instance.Play(AudioManager.AudioClips.BubblePop);
+
+        GameManager.SwitchState(GameState.Instructions);
+    }
+
+    private void CreditsButtonClickHandler(ClickEvent e)
+    {
+        AudioManager.instance.Play(AudioManager.AudioClips.BubblePop);
+
+        GameManager.SwitchState(GameState.Credits);
+    }
+
+    private void OnDisable()
+    {
+        _playButton.UnregisterBackgroundToggleImageEvents();
+        _creditsButton.UnregisterBackgroundToggleImageEvents();
+
+        _playButton.UnregisterCallback<ClickEvent>(PlayButtonClickHandler);
+        _playButton.UnregisterCallback<ClickEvent>(CreditsButtonClickHandler);
     }
 
 }
