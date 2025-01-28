@@ -627,10 +627,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6355522240122502765, guid: f6d71abcbfec0452fb6b00ecadbb5d04, type: 3}
-      propertyPath: _drinkPrefab
-      value: 
-      objectReference: {fileID: 569660186624934875, guid: bbb59afc544ad47d2bf0fe5cd2ed8559, type: 3}
     - target: {fileID: 7052266227724065252, guid: f6d71abcbfec0452fb6b00ecadbb5d04, type: 3}
       propertyPath: m_Name
       value: DrinkManager

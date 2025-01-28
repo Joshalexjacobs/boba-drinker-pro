@@ -39,15 +39,20 @@ public class DrinkManager : MonoBehaviour
         {
             var spawnedGameObject = Instantiate(_drinkPrefab, _spawnPoint.position, Quaternion.identity);
 
+            spawnedGameObject.TryGetComponent(out DrinkController spawnedDrinkController);
+
             spawnedGameObject.transform.localScale = gameObject.transform.localScale;
 
             _spawnedDrinks.Add(spawnedGameObject);
 
-            yield return CandyCoded.Animate.MoveTo(spawnedGameObject, _restPoint.position, 1, Space.World);
+            yield return CandyCoded.Animate.MoveTo(spawnedGameObject.gameObject, _restPoint.position, 1, Space.World);
 
-            yield return new WaitForSeconds(1f);
+            // yield return new WaitForSeconds(1f);
 
-            yield return CandyCoded.Animate.MoveTo(spawnedGameObject, _despawnPoint.position, 1, Space.World);
+            yield return spawnedDrinkController.Drink();
+
+            yield return CandyCoded.Animate.MoveTo(spawnedGameObject.gameObject, _despawnPoint.position, 1,
+                Space.World);
 
             _spawnedDrinks.Remove(spawnedGameObject);
 
