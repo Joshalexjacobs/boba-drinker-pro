@@ -48,5 +48,8 @@ TagManager:
   - name: Foreground
     uniqueID: 1072429349
     locked: 0
+  - name: Drink
+    uniqueID: 536069573
+    locked: 0
   m_RenderingLayers:
   - Default

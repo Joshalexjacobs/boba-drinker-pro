@@ -27,6 +27,9 @@ public class InstructionsController : MonoBehaviour
     private void LetsGoButtonHandler(ClickEvent e)
     {
         AudioManager.instance.Play(AudioManager.AudioClips.BubblePop);
+
+        GameManager.SwitchState(GameState.GameLoop);
+
     }
 
     private void OnDisable()

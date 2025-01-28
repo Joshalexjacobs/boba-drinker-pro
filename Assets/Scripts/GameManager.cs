@@ -9,6 +9,8 @@ public enum GameState
 
     Instructions,
 
+    GameLoop,
+
     Credits
 
 }
@@ -26,6 +28,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private UIDocument _creditsDocument;
+
+    [SerializeField]
+    private DrinkManager _drinkManager;
 
     private GameState _currentState = GameState.Title;
 
@@ -57,6 +62,10 @@ public class GameManager : MonoBehaviour
                 _instance.SwitchToCreditsState();
 
                 break;
+            case GameState.GameLoop:
+                _instance.SwitchToGameLoopState();
+
+                break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(state), state, null);
         }
@@ -65,26 +74,30 @@ public class GameManager : MonoBehaviour
 
     private void SwitchToTitleState()
     {
-        _titleDocument.gameObject.SetActive(true);
-
-        _instructionsDocument.gameObject.SetActive(false);
-        _creditsDocument.gameObject.SetActive(false);
+        SwitchToGameObject(_titleDocument.gameObject);
     }
 
     private void SwitchToInstructionsState()
     {
-        _instructionsDocument.gameObject.SetActive(true);
+        SwitchToGameObject(_instructionsDocument.gameObject);
+    }
 
-        _titleDocument.gameObject.SetActive(false);
-        _creditsDocument.gameObject.SetActive(false);
+    private void SwitchToGameLoopState()
+    {
+        SwitchToGameObject(_drinkManager.gameObject);
     }
 
     private void SwitchToCreditsState()
     {
-        _creditsDocument.gameObject.SetActive(true);
+        SwitchToGameObject(_creditsDocument.gameObject);
+    }
 
-        _titleDocument.gameObject.SetActive(false);
-        _instructionsDocument.gameObject.SetActive(false);
+    private void SwitchToGameObject(GameObject newActiveGameObject)
+    {
+        _titleDocument.gameObject.SetActive(newActiveGameObject.Equals(_titleDocument.gameObject));
+        _instructionsDocument.gameObject.SetActive(newActiveGameObject.Equals(_instructionsDocument.gameObject));
+        _drinkManager.gameObject.SetActive(newActiveGameObject.Equals(_drinkManager.gameObject));
+        _creditsDocument.gameObject.SetActive(newActiveGameObject.Equals(_creditsDocument.gameObject));
     }
 
 }

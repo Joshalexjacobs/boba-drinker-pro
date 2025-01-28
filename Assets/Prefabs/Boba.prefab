@@ -9,11 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2666164917975375166}
-  - component: {fileID: 2707945197331028349}
   - component: {fileID: 7203245450673479423}
   - component: {fileID: 3182994281428508518}
-  - component: {fileID: 1226575733522085976}
-  - component: {fileID: 5256716566393631690}
+  - component: {fileID: 5192274711659187452}
   m_Layer: 6
   m_Name: Boba
   m_TagString: Untagged
@@ -36,18 +34,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2707945197331028349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8918746194969713475}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8988e03d8e64a40f7baf287d64343eb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &7203245450673479423
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -130,14 +116,14 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 56
   m_CollisionDetection: 0
---- !u!65 &1226575733522085976
-BoxCollider:
+--- !u!135 &5192274711659187452
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8918746194969713475}
-  m_Material: {fileID: 13400000, guid: a5086de8d3ed843f1963a8e7397efe57, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -149,19 +135,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.7, y: 0.7, z: 0.7}
+  m_Radius: 0.465
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5256716566393631690
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8918746194969713475}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7218c20768c6946ff93db0cb013c08ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _boxCollider: {fileID: 1226575733522085976}
-  _rigidbody: {fileID: 3182994281428508518}
