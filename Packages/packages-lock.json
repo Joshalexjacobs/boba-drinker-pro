@@ -252,7 +252,7 @@
       "url": "https://packages.unity.com"
     },
     "xyz.candycoded.candycoded": {
-      "version": "https://github.com/CandyCoded/CandyCoded.git#v4.4.1",
+      "version": "https://github.com/CandyCoded/CandyCoded.git?path=/Assets/Plugins/CandyCoded",
       "depth": 0,
       "source": "git",
       "dependencies": {
@@ -263,7 +263,7 @@
         "com.unity.modules.uielements": "1.0.0",
         "com.unity.ugui": "1.0.0"
       },
-      "hash": "748d08c94b568518928fb8ae1d8373ed504f88bf"
+      "hash": "1088f05760b92af4bbadc8760f3962f480543906"
     },
     "com.unity.modules.accessibility": {
       "version": "1.0.0",
