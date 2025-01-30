@@ -233,6 +233,7 @@ MonoBehaviour:
   _spawnPoint: {fileID: 8432195708282168132}
   _restPoint: {fileID: 3910239985202592145}
   _despawnPoint: {fileID: 1560324968507777104}
+  _strawController: {fileID: 5043132436949284228}
 --- !u!1001 &8807872072535975603
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -247,7 +248,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5152680811229103, guid: c4b3341e8c43c4d55a8fa6df32406a9c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.34
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5152680811229103, guid: c4b3341e8c43c4d55a8fa6df32406a9c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -290,6 +291,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4b3341e8c43c4d55a8fa6df32406a9c, type: 3}
+--- !u!114 &5043132436949284228 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4595666961010758455, guid: c4b3341e8c43c4d55a8fa6df32406a9c, type: 3}
+  m_PrefabInstance: {fileID: 8807872072535975603}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a93ea235dcda4ac9810a4d95e3859d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8802732621344000284 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5152680811229103, guid: c4b3341e8c43c4d55a8fa6df32406a9c, type: 3}

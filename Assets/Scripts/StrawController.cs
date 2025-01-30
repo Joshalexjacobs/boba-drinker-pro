@@ -1,3 +1,4 @@
+using System.Collections;
 using CandyCoded;
 using UnityEngine;
 
@@ -10,6 +11,8 @@ public class StrawController : MonoBehaviour
 
     private int? _currentFingerId;
 
+    private bool _isDraggable = true;
+
     private bool _isDragging;
 
     private void Awake()
@@ -17,8 +20,28 @@ public class StrawController : MonoBehaviour
         _mainCamera = Camera.main;
     }
 
+    public IEnumerator MoveStrawOutOfDrink()
+    {
+        _isDraggable = false;
+        _isDragging = false;
+
+        yield return Animate.MoveTo(gameObject, new Vector3(0, 12, 0), 1f, Space.World);
+    }
+
+    public IEnumerator MoveStrawBack()
+    {
+        yield return Animate.MoveTo(gameObject, new Vector3(0, 8.35f, 0), 1f, Space.World);
+
+        _isDraggable = true;
+    }
+
     private void Update()
     {
+        if (!_isDraggable)
+        {
+            return;
+        }
+
         if (InputManager.GetInputDown(ref _currentFingerId))
         {
             _isDragging = true;

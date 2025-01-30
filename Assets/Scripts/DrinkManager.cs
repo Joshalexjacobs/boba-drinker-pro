@@ -17,6 +17,9 @@ public class DrinkManager : MonoBehaviour
     [SerializeField]
     private Transform _despawnPoint;
 
+    [SerializeField]
+    private StrawController _strawController;
+
     private readonly List<GameObject> _spawnedDrinks = new();
 
     private Coroutine _gameLoopCoroutine;
@@ -47,7 +50,7 @@ public class DrinkManager : MonoBehaviour
 
             yield return CandyCoded.Animate.MoveTo(spawnedGameObject.gameObject, _restPoint.position, 1, Space.World);
 
-            spawnedDrinkController.StartingDrinking();
+            yield return _strawController.MoveStrawBack();
 
             yield return spawnedDrinkController.Drink();
 
@@ -55,6 +58,8 @@ public class DrinkManager : MonoBehaviour
             {
                 GameManager.SwitchState(GameState.GameOver);
             }
+
+            yield return _strawController.MoveStrawOutOfDrink();
 
             yield return CandyCoded.Animate.MoveTo(spawnedGameObject.gameObject, _despawnPoint.position, 1,
                 Space.World);
