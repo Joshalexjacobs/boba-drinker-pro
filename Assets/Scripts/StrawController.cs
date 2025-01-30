@@ -4,6 +4,8 @@ using UnityEngine;
 public class StrawController : MonoBehaviour
 {
 
+    private const float _strawMovementSpeed = 15f;
+
     private Camera _mainCamera;
 
     private int? _currentFingerId;
@@ -17,11 +19,11 @@ public class StrawController : MonoBehaviour
 
     private void Update()
     {
-        if (gameObject.GetInputDown(_mainCamera, ref _currentFingerId, out RaycastHit _))
+        if (InputManager.GetInputDown(ref _currentFingerId))
         {
             _isDragging = true;
         }
-        else if (gameObject.GetInputUp(_mainCamera, ref _currentFingerId, out RaycastHit _))
+        else if (InputManager.GetInputUp(ref _currentFingerId))
         {
             _isDragging = false;
         }
@@ -40,7 +42,10 @@ public class StrawController : MonoBehaviour
 
         var position = _mainCamera.ScreenToWorldPoint(inputPosition.Value);
 
-        gameObject.transform.position = new Vector3(position.x, position.y, 0f);
+        var newPosition = new Vector3(position.x, position.y, 0f);
+
+        gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, newPosition,
+            _strawMovementSpeed * Time.deltaTime);
     }
 
 }
