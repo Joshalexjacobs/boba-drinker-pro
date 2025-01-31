@@ -50,6 +50,8 @@ public class DrinkManager : MonoBehaviour
 
             yield return CandyCoded.Animate.MoveTo(spawnedGameObject.gameObject, _restPoint.position, 1, Space.World);
 
+            yield return spawnedDrinkController.SpawnBoba();
+
             yield return _strawController.MoveStrawBack();
 
             yield return spawnedDrinkController.Drink();

@@ -1,10 +1,18 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class DrinkController : MonoBehaviour
 {
 
     private const float MAX_VOLUME = 100f;
+
+    [SerializeField]
+    private GameObject _bobaPrefab;
+
+    [SerializeField]
+    private Transform _bobaSpawnOrigin;
 
     [SerializeField]
     private Transform _mask;
@@ -18,9 +26,18 @@ public class DrinkController : MonoBehaviour
 
     private bool _isDrinking = false;
 
-    public int bobaRemaining { get; private set; } = 0;
+    public int bobaRemaining => _spawnedBoba.Count;
 
-    public void StartingDrinking(float drinkSpeed = 100)
+    private List<GameObject> _spawnedBoba = new();
+
+    private Vector3 _startMaskPosition;
+
+    private void Awake()
+    {
+        _startMaskPosition = _mask.localPosition;
+    }
+
+    public void StartingDrinking(float drinkSpeed = 25)
     {
         _drinkSpeed = drinkSpeed;
 
@@ -32,22 +49,51 @@ public class DrinkController : MonoBehaviour
         _isDrinking = false;
     }
 
+    public IEnumerator SpawnBoba(int bobCount = 5)
+    {
+        var delayBetweenSpawningBoba = new WaitForSeconds(0.25f);
+
+        while (bobCount > 0)
+        {
+            _spawnedBoba.Add(Instantiate(_bobaPrefab,
+                _bobaSpawnOrigin.position + (Vector3)UnityEngine.Random.insideUnitCircle * 1.5f, Quaternion.identity));
+
+            bobCount -= 1;
+
+            yield return delayBetweenSpawningBoba;
+        }
+    }
+
     public IEnumerator Drink()
     {
-        var startMaskPosition = _mask.position;
-
-        while (_volume > 0)
+        while (_volume > 0 && bobaRemaining > 0)
         {
+            Debug.Log($"boba remaining: {bobaRemaining}");
+
             if (_isDrinking)
             {
                 _volume -= _drinkSpeed * Time.deltaTime;
             }
 
-            _mask.position = Vector3.Lerp(startMaskPosition, _maskTarget.position,
+            _mask.localPosition = Vector3.Lerp(_startMaskPosition, _maskTarget.localPosition,
                 Mathf.InverseLerp(MAX_VOLUME, 0, _volume));
 
             yield return null;
         }
+    }
+
+    public bool EatBoba(GameObject boba)
+    {
+        if (!_spawnedBoba.Contains(boba))
+        {
+            return false;
+        }
+
+        _spawnedBoba.Remove(boba);
+
+        Destroy(boba);
+
+        return true;
     }
 
 }

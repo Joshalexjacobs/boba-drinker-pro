@@ -3,6 +3,9 @@ using UnityEngine;
 public class StrawBottomController : MonoBehaviour
 {
 
+    [SerializeField]
+    private LayerMask _bobaLayer;
+
     private DrinkController _drinkController;
 
     private const float _testRadius = 0.25f;
@@ -15,7 +18,7 @@ public class StrawBottomController : MonoBehaviour
 
     private void Update()
     {
-        if (Physics.OverlapSphereNonAlloc(_testPosition, _testRadius, _hitColliders, LayerMask.NameToLayer("Boba")) ==
+        if (Physics.OverlapSphereNonAlloc(_testPosition, _testRadius, _hitColliders, _bobaLayer) ==
             0)
         {
             return;
@@ -23,7 +26,7 @@ public class StrawBottomController : MonoBehaviour
 
         foreach (var hit in _hitColliders)
         {
-            if (hit == null || !hit.gameObject.CompareTag("Boba"))
+            if (hit == null)
             {
                 continue;
             }
@@ -31,7 +34,9 @@ public class StrawBottomController : MonoBehaviour
             AudioManager.instance.Play(AudioManager.AudioClips.Slurp);
             HapticsController.TriggerHapticFeedback();
 
-            Destroy(hit.gameObject);
+            Debug.Log(hit.gameObject.name);
+
+            _drinkController.EatBoba(hit.gameObject);
         }
     }
 
