@@ -67,8 +67,6 @@ public class DrinkController : MonoBehaviour
     {
         while (_volume > 0 && bobaRemaining > 0)
         {
-            Debug.Log($"boba remaining: {bobaRemaining}");
-
             if (_isDrinking)
             {
                 _volume -= _drinkSpeed * Time.deltaTime;

@@ -34,8 +34,6 @@ public class StrawBottomController : MonoBehaviour
             AudioManager.instance.Play(AudioManager.AudioClips.Slurp);
             HapticsController.TriggerHapticFeedback();
 
-            Debug.Log(hit.gameObject.name);
-
             _drinkController.EatBoba(hit.gameObject);
         }
     }
