@@ -16,6 +16,16 @@ public class StrawBottomController : MonoBehaviour
 
     private Vector3 _testPosition => gameObject.transform.position - gameObject.transform.up * _testDistance;
 
+    private DrinkController GetDrinkController()
+    {
+        if (_drinkController == null)
+        {
+            _drinkController = FindFirstObjectByType<DrinkController>();
+        }
+
+        return _drinkController;
+    }
+
     private void Update()
     {
         if (Physics.OverlapSphereNonAlloc(_testPosition, _testRadius, _hitColliders, _bobaLayer) ==
@@ -34,7 +44,7 @@ public class StrawBottomController : MonoBehaviour
             AudioManager.instance.Play(AudioManager.AudioClips.Slurp);
             HapticsController.TriggerHapticFeedback();
 
-            _drinkController.EatBoba(hit.gameObject);
+            GetDrinkController().EatBoba(hit.gameObject);
         }
     }
 
@@ -45,12 +55,7 @@ public class StrawBottomController : MonoBehaviour
             return;
         }
 
-        if (_drinkController == null)
-        {
-            _drinkController = FindFirstObjectByType<DrinkController>();
-        }
-
-        _drinkController.StartingDrinking();
+        GetDrinkController().StartingDrinking();
     }
 
     private void OnTriggerExit(Collider other)
@@ -60,12 +65,7 @@ public class StrawBottomController : MonoBehaviour
             return;
         }
 
-        if (_drinkController == null)
-        {
-            _drinkController = FindFirstObjectByType<DrinkController>();
-        }
-
-        _drinkController.StopDrinking();
+        GetDrinkController().StopDrinking();
     }
 
     private void OnDrawGizmos()
