@@ -1,9 +1,17 @@
+using System;
 using System.Collections;
 using CandyCoded;
+using ScottDoxey;
 using UnityEngine;
 
 public class StrawController : MonoBehaviour
 {
+
+    [SerializeField]
+    private RopeController _ropeController;
+
+    [SerializeField]
+    private Transform _strawBottomTransform;
 
     private const float _strawMovementSpeed = 15f;
 
@@ -25,11 +33,15 @@ public class StrawController : MonoBehaviour
         _isDraggable = false;
         _isDragging = false;
 
-        yield return Animate.MoveTo(gameObject, new Vector3(0, 12, 0), 1f, Space.World);
+        yield return Animate.MoveTo(gameObject, new Vector3(0, 16, 0), 1f, Space.World);
     }
 
     public IEnumerator MoveStrawBack()
     {
+        ResetRope();
+
+        yield return new WaitForSeconds(1f);
+
         yield return Animate.MoveTo(gameObject, new Vector3(0, 8.35f, 0), 1f, Space.World);
 
         _isDraggable = true;
@@ -69,6 +81,20 @@ public class StrawController : MonoBehaviour
 
         gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, newPosition,
             _strawMovementSpeed * Time.deltaTime);
+    }
+
+    private void OnDisable()
+    {
+        ResetRope();
+    }
+
+    private void ResetRope()
+    {
+        _ropeController.TeardownRope();
+
+        _strawBottomTransform.localPosition = new Vector3(0, -6f, 0);
+
+        _isDragging = false;
     }
 
 }
