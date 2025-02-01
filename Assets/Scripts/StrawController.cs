@@ -85,6 +85,11 @@ public class StrawController : MonoBehaviour
             _strawMovementSpeed * Time.deltaTime);
     }
 
+    private void OnEnable()
+    {
+        ResetRope();
+    }
+
     private void OnDisable()
     {
         ResetRope();

@@ -282,6 +282,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 35740592778477188, guid: c4b3341e8c43c4d55a8fa6df32406a9c, type: 3}
+      propertyPath: _length
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 6741862923613358982, guid: c4b3341e8c43c4d55a8fa6df32406a9c, type: 3}
       propertyPath: m_Name
       value: Straw
