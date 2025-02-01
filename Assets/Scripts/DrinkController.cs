@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -91,6 +92,16 @@ public class DrinkController : MonoBehaviour
         Destroy(boba);
 
         return true;
+    }
+
+    private void OnDisable()
+    {
+        foreach (var spawnedBoba in _spawnedBoba)
+        {
+            Destroy(spawnedBoba);
+        }
+
+        _spawnedBoba.Clear();
     }
 
 }
