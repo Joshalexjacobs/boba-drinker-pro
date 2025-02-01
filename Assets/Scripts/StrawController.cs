@@ -40,6 +40,8 @@ public class StrawController : MonoBehaviour
     {
         ResetRope();
 
+        _ropeController.SetupRope();
+
         yield return new WaitForSeconds(1f);
 
         yield return Animate.MoveTo(gameObject, new Vector3(0, 8.35f, 0), 1f, Space.World);
