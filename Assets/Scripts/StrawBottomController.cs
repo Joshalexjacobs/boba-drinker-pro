@@ -10,7 +10,7 @@ public class StrawBottomController : MonoBehaviour
 
     private const float _testRadius = 0.25f;
 
-    private const float _testDistance = 0.5f;
+    private const float _testDistance = 0.25f;
 
     private readonly Collider[] _hitColliders = new Collider[10];
 
