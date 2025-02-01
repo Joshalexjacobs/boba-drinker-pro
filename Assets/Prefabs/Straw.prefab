@@ -341,3 +341,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a93ea235dcda4ac9810a4d95e3859d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ropeController: {fileID: 35740592778477188}
+  _strawBottomTransform: {fileID: 5751391689696013421}
