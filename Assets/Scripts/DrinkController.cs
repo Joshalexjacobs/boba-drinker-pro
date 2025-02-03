@@ -37,10 +37,8 @@ public class DrinkController : MonoBehaviour
         _startMaskPosition = _mask.localPosition;
     }
 
-    public void StartingDrinking(float drinkSpeed = 25)
+    public void StartingDrinking()
     {
-        _drinkSpeed = drinkSpeed;
-
         _isDrinking = true;
     }
 
@@ -64,8 +62,10 @@ public class DrinkController : MonoBehaviour
         }
     }
 
-    public IEnumerator Drink()
+    public IEnumerator Drink(float drinkSpeed)
     {
+        _drinkSpeed = drinkSpeed;
+
         while (_volume > 0 && bobaRemaining > 0)
         {
             if (_isDrinking)

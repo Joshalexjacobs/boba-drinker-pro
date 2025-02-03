@@ -20,6 +20,10 @@ public class DrinkManager : MonoBehaviour
     [SerializeField]
     private StrawController _strawController;
 
+    private float _drinkSpeed = 5;
+
+    private float _drinkSpeedStep = 3;
+
     private readonly List<GameObject> _spawnedDrinks = new();
 
     private Coroutine _gameLoopCoroutine;
@@ -54,7 +58,7 @@ public class DrinkManager : MonoBehaviour
 
             yield return _strawController.MoveStrawBack();
 
-            yield return spawnedDrinkController.Drink();
+            yield return spawnedDrinkController.Drink(_drinkSpeed);
 
             if (spawnedDrinkController.bobaRemaining > 0)
             {
@@ -69,6 +73,8 @@ public class DrinkManager : MonoBehaviour
             _spawnedDrinks.Remove(spawnedGameObject);
 
             Destroy(spawnedGameObject);
+
+            _drinkSpeed += _drinkSpeedStep;
 
             yield return null;
         }
